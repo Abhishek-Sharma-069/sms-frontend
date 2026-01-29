@@ -1,0 +1,90 @@
+<!-- Student list view: table, loading, empty, and error states. -->
+<div class="student-list">
+  <!-- Header: title + Add Student CTA. -->
+  <header class="list-header">
+    <div>
+      <h1>Student Management</h1>
+      <p class="subtitle">View and manage students</p>
+    </div>
+    <a routerLink="/students/add" class="btn-add">
+      <i class="bi bi-plus-lg"></i>
+      Add Student
+    </a>
+  </header>
+
+  @if (loading) {
+    <div class="card-state flex flex-col items-center justify-center py-16">
+      <i class="bi bi-arrow-repeat animate-spin text-3xl icon-muted"></i>
+      <p class="mt-3 text-sm">Loading students…</p>
+    </div>
+  } @else if (error) {
+    <div class="card-error px-4 py-4">
+      <div class="flex items-center gap-2">
+        <i class="bi bi-exclamation-triangle text-lg"></i>
+        <span class="font-medium">Error</span>
+      </div>
+      <p class="mt-1 text-sm">{{ error }}</p>
+      <button type="button" (click)="loadStudents()" class="btn-retry mt-3">Retry</button>
+    </div>
+  } @else if (students.length === 0) {
+    <div class="card-state flex flex-col items-center justify-center py-16">
+      <i class="bi bi-people text-4xl icon-muted"></i>
+      <p class="mt-3 font-medium" style="color: var(--sms-primary);">No students yet</p>
+      <p class="mt-1 text-sm">Add your first student to get started.</p>
+      <a routerLink="/students/add" class="btn-add mt-4">
+        <i class="bi bi-plus-lg"></i>
+        Add Student
+      </a>
+    </div>
+  } @else {
+    <div class="table-wrap">
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Result</th>
+            <th class="col-actions">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (s of students; track s.studentId) {
+            <tr>
+              <td class="col-name">{{ s.name }}</td>
+              <td class="col-email">{{ s.email }}</td>
+              <td class="col-course">{{ s.course }}</td>
+              <td class="col-marks">{{ s.marks }}</td>
+              <td class="col-result">
+                <span
+                  class="badge"
+                  [class.badge-pass]="s.result === 'Pass'"
+                  [class.badge-fail]="s.result === 'Fail'"
+                  [class.badge-other]="s.result !== 'Pass' && s.result !== 'Fail'"
+                >
+                  {{ s.result }}
+                </span>
+              </td>
+              <td class="col-actions">
+                <div class="cell-actions">
+                  <a [routerLink]="['/students/edit', s.studentId]" class="link-edit" title="Edit">
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                  <button
+                    type="button"
+                    (click)="deleteStudent(s)"
+                    class="btn-icon btn-icon-delete"
+                    title="Delete"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

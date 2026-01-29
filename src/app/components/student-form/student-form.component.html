@@ -1,0 +1,138 @@
+<!-- Student add/edit form. Reactive Forms with validation. -->
+<div class="student-form">
+  <header class="form-header">
+    <a routerLink="/" class="link-back">
+      <i class="bi bi-arrow-left"></i>
+      Back to list
+    </a>
+    <h1 class="form-title">{{ isEdit ? 'Edit Student' : 'Add Student' }}</h1>
+    <p class="form-subtitle mt-1 text-sm">
+      {{ isEdit ? 'Update student details.' : 'Fill in the form to add a new student.' }}
+    </p>
+  </header>
+
+  @if (loadingData) {
+    <div class="card-state flex flex-col items-center justify-center py-16">
+      <i class="bi bi-arrow-repeat animate-spin text-3xl icon-muted"></i>
+      <p class="mt-3 text-sm">Loading…</p>
+    </div>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-card">
+      @if (error) {
+        <div class="form-error flex items-center gap-2">
+          <i class="bi bi-exclamation-triangle icon"></i>
+          {{ error }}
+        </div>
+      }
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="field">
+          <label for="name" class="label">Name</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="input"
+            placeholder="e.g. John Doe"
+            [class.input-error]="hasError('name', 'required') || hasError('name', 'minlength')"
+          />
+          @if (hasError('name', 'required')) {
+            <p class="error">Name is required.</p>
+          }
+          @if (hasError('name', 'minlength') && !hasError('name', 'required')) {
+            <p class="error">Name must be at least 2 characters.</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="email" class="label">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="input"
+            placeholder="e.g. john&#64;example.com"
+            [class.input-error]="hasError('email', 'required') || hasError('email', 'email')"
+          />
+          @if (hasError('email', 'required')) {
+            <p class="error">Email is required.</p>
+          }
+          @if (hasError('email', 'email') && !hasError('email', 'required')) {
+            <p class="error">Please enter a valid email.</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div class="field">
+          <label for="course" class="label">Course</label>
+          <input
+            id="course"
+            type="text"
+            formControlName="course"
+            class="input"
+            placeholder="e.g. Computer Science"
+            [class.input-error]="hasError('course', 'required') || hasError('course', 'minlength')"
+          />
+          @if (hasError('course', 'required')) {
+            <p class="error">Course is required.</p>
+          }
+          @if (hasError('course', 'minlength') && !hasError('course', 'required')) {
+            <p class="error">Course must be at least 2 characters.</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="marks" class="label">Marks</label>
+          <input
+            id="marks"
+            type="number"
+            formControlName="marks"
+            class="input"
+            placeholder="0–100"
+            min="0"
+            max="100"
+            [class.input-error]="hasError('marks', 'required') || hasError('marks', 'min') || hasError('marks', 'max')"
+          />
+          @if (hasError('marks', 'required')) {
+            <p class="error">Marks is required.</p>
+          }
+          @if ((hasError('marks', 'min') || hasError('marks', 'max')) && !hasError('marks', 'required')) {
+            <p class="error">Marks must be between 0 and 100.</p>
+          }
+        </div>
+      </div>
+
+      <div class="field sm:max-w-xs">
+        <label for="result" class="label">Result</label>
+        <select
+          id="result"
+          formControlName="result"
+          class="input"
+          [class.input-error]="hasError('result', 'required')"
+        >
+          <option value="">Select result</option>
+          <option value="Pass">Pass</option>
+          <option value="Fail">Fail</option>
+        </select>
+        @if (hasError('result', 'required')) {
+          <p class="error">Result is required.</p>
+        }
+      </div>
+
+      <div class="form-actions mt-8 flex flex-wrap gap-3">
+        <button
+          type="submit"
+          [disabled]="form.invalid || loading"
+          class="btn-primary"
+        >
+          @if (loading) {
+            <i class="bi bi-arrow-repeat animate-spin mr-2"></i>
+          }
+          {{ isEdit ? 'Update Student' : 'Add Student' }}
+        </button>
+        <a routerLink="/" class="btn-secondary">Cancel</a>
+      </div>
+    </form>
+  }
+</div>

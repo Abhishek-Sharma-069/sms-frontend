@@ -1,0 +1,17 @@
+/* Global styles and Tailwind. */
+@import "tailwindcss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/**
+ * SMS color palette (used across app and components).
+ * --sms-primary: #1a3263 (dark blue, nav, headings)
+ * --sms-secondary: #547792 (medium blue, links, table header)
+ * --sms-accent: #fab95b (gold, CTAs, highlights)
+ * --sms-bg: #e8e2db (light cream, main background)
+ */
+:root {
+  --sms-primary: #1a3263;
+  --sms-secondary: #547792;
+  --sms-accent: #fab95b;
+  --sms-bg: #e8e2db;
+}
