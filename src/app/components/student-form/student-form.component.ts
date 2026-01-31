@@ -142,7 +142,7 @@ export class StudentFormComponent implements OnInit, OnDestroy {
       this.studentService.update(this.studentId, value).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.error = err?.message ?? 'Failed to update student.';
@@ -153,7 +153,7 @@ export class StudentFormComponent implements OnInit, OnDestroy {
       this.studentService.create(value).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           this.error = err?.message ?? 'Failed to add student.';

@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 /**
  * Root app component.
- * Renders top nav (logo, Students, Add Student) and main router outlet.
+ * Renders navbar and main router outlet.
  */
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

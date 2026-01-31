@@ -1,0 +1,23 @@
+<div class="auth-card">
+  <h2 class="auth-title">Login</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    @if (error) {
+      <div class="auth-error">{{ error }}</div>
+    }
+    <div class="field">
+      <label for="login-email">Email</label>
+      <input id="login-email" type="email" formControlName="email" class="input" placeholder="you@example.com" />
+      @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <span class="field-error">Valid email is required</span>
+      }
+    </div>
+    <div class="field">
+      <label for="login-password">Password</label>
+      <input id="login-password" type="password" formControlName="password" class="input" placeholder="••••••••" />
+      @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <span class="field-error">Password is required (min 4 characters)</span>
+      }
+    </div>
+    <button type="submit" class="btn-primary" [disabled]="form.invalid">Login</button>
+  </form>
+</div>
