@@ -1,23 +1,23 @@
-<div class="auth-card">
-  <h2 class="auth-title">Login</h2>
+<div class="bg-white rounded-xl border border-(--sms-secondary) p-6 w-full max-w-md shadow-[0_2px_8px_rgba(26,50,99,0.08)]">
+  <h2 class="text-(--sms-primary) text-[1.25rem] font-semibold m-0 mb-5">Login</h2>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     @if (error) {
-      <div class="auth-error">{{ error }}</div>
+      <div class="bg-[rgba(239,68,68,0.1)] text-[#b91c1c] px-3 py-2 rounded-lg text-[0.875rem] mb-4">{{ error }}</div>
     }
-    <div class="field">
-      <label for="login-email">Email</label>
-      <input id="login-email" type="email" formControlName="email" class="input" placeholder="you@example.com" />
+    <div class="mb-4">
+      <label for="login-email" class="block text-[0.875rem] font-medium text-(--sms-primary) mb-1.5">Email</label>
+      <input id="login-email" type="email" formControlName="email" class="w-full px-3 py-2.5 border border-(--sms-secondary) rounded-lg text-[0.875rem] box-border focus:outline-none focus:border-(--sms-accent) focus:ring-2 focus:ring-[rgba(250,185,91,0.3)]" placeholder="you@example.com" />
       @if (form.get('email')?.invalid && form.get('email')?.touched) {
-        <span class="field-error">Valid email is required</span>
+        <span class="block text-[0.75rem] text-[#b91c1c] mt-1">Valid email is required</span>
       }
     </div>
-    <div class="field">
-      <label for="login-password">Password</label>
-      <input id="login-password" type="password" formControlName="password" class="input" placeholder="••••••••" />
+    <div class="mb-4">
+      <label for="login-password" class="block text-[0.875rem] font-medium text-(--sms-primary) mb-1.5">Password</label>
+      <input id="login-password" type="password" formControlName="password" class="w-full px-3 py-2.5 border border-(--sms-secondary) rounded-lg text-[0.875rem] box-border focus:outline-none focus:border-(--sms-accent) focus:ring-2 focus:ring-[rgba(250,185,91,0.3)]" placeholder="••••••••" />
       @if (form.get('password')?.invalid && form.get('password')?.touched) {
-        <span class="field-error">Password is required (min 4 characters)</span>
+        <span class="block text-[0.75rem] text-[#b91c1c] mt-1">Password is required (min 4 characters)</span>
       }
     </div>
-    <button type="submit" class="btn-primary" [disabled]="form.invalid">Login</button>
+    <button type="submit" class="w-full mt-2 px-4 py-2.5 bg-(--sms-accent) text-(--sms-primary) border-none rounded-lg text-[0.875rem] font-semibold cursor-pointer transition-colors hover:enabled:bg-[#e5a84a] disabled:opacity-60 disabled:cursor-not-allowed" [disabled]="form.invalid">Login</button>
   </form>
 </div>

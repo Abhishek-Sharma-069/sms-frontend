@@ -1,29 +1,33 @@
-<div class="home-page">
-  <div class="home-hero">
-    <h1 class="home-title">Student Management System</h1>
-    <p class="home-subtitle">Login or create an account to manage students</p>
+<div class="w-full min-h-[60vh] flex flex-col items-center py-8 px-4">
+  <div class="text-center mb-8">
+    <h1 class="text-(--sms-primary) text-[1.75rem] font-bold m-0 mb-2">Student Management System</h1>
+    <p class="text-(--sms-secondary) text-[1rem] m-0">Login or create an account to manage students</p>
   </div>
 
-  <div class="auth-tabs">
+  <div class="flex gap-2 mb-6">
     <button
       type="button"
-      class="tab-btn"
-      [class.tab-active]="activeTab === 'login'"
+      class="px-5 py-2 border border-(--sms-secondary) bg-white text-(--sms-secondary) rounded-lg text-[0.875rem] font-medium cursor-pointer transition-all hover:bg-(--sms-bg) hover:text-(--sms-primary)"
+      [class.!bg-(--sms-accent)]="activeTab === 'login'"
+      [class.!text-(--sms-primary)]="activeTab === 'login'"
+      [class.!border-(--sms-accent)]="activeTab === 'login'"
       (click)="setTab('login')"
     >
       Login
     </button>
     <button
       type="button"
-      class="tab-btn"
-      [class.tab-active]="activeTab === 'signup'"
+      class="px-5 py-2 border border-(--sms-secondary) bg-white text-(--sms-secondary) rounded-lg text-[0.875rem] font-medium cursor-pointer transition-all hover:bg-(--sms-bg) hover:text-(--sms-primary)"
+      [class.!bg-(--sms-accent)]="activeTab === 'signup'"
+      [class.!text-(--sms-primary)]="activeTab === 'signup'"
+      [class.!border-(--sms-accent)]="activeTab === 'signup'"
       (click)="setTab('signup')"
     >
       Sign Up
     </button>
   </div>
 
-  <div class="auth-content">
+  <div class="w-full flex justify-center">
     @if (activeTab === 'login') {
       <app-login />
     } @else {

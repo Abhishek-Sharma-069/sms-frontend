@@ -1,34 +1,38 @@
-<nav class="navbar">
-  <div class="nav-inner">
-    <a [routerLink]="isLoggedIn ? '/dashboard' : '/home'" class="nav-logo">
-      <i class="bi bi-mortarboard-fill nav-logo-icon"></i>
+<nav class="shrink-0 border-b-2 border-(--sms-accent) bg-(--sms-primary)">
+  <div class="w-full px-6 py-3 flex items-center justify-between gap-4 flex-wrap box-border">
+    <a [routerLink]="isLoggedIn ? '/dashboard' : '/home'" class="inline-flex items-center gap-2 text-[1.125rem] font-semibold no-underline text-(--sms-bg)">
+      <i class="bi bi-mortarboard-fill text-(--sms-accent)"></i>
       <span>SMS</span>
     </a>
 
     @if (isLoggedIn) {
-      <div class="nav-links">
+      <div class="flex items-center gap-2 flex-wrap">
         <a
           routerLink="/dashboard"
-          routerLinkActive="nav-link-active"
+          routerLinkActive="!text-(--sms-primary) !bg-(--sms-accent)"
           [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link"
+          class="inline-flex items-center gap-2 px-3 py-2 text-[0.875rem] font-medium text-[rgba(232,226,219,0.85)] no-underline rounded-lg transition-colors hover:text-(--sms-bg) hover:bg-[rgba(84,119,146,0.4)]"
         >
           <i class="bi bi-people"></i>
           Students
         </a>
-        <a routerLink="/students/add" class="nav-link">
+        <a routerLink="/students/add" 
+           routerLinkActive="!text-(--sms-primary) !bg-(--sms-accent)"
+           class="inline-flex items-center gap-2 px-3 py-2 text-[0.875rem] font-medium text-[rgba(232,226,219,0.85)] no-underline rounded-lg transition-colors hover:text-(--sms-bg) hover:bg-[rgba(84,119,146,0.4)]">
           <i class="bi bi-plus-lg"></i>
           Add Student
         </a>
-        <span class="nav-user">{{ userName }}</span>
-        <button type="button" class="nav-btn-logout" (click)="logout()">
+        <span class="text-[0.875rem] text-(--sms-bg) px-2">{{ userName }}</span>
+        <button type="button" class="inline-flex items-center gap-2 px-3 py-2 text-[0.875rem] font-medium text-(--sms-bg) bg-transparent border border-[rgba(232,226,219,0.5)] rounded-lg cursor-pointer transition-all hover:bg-[rgba(239,68,68,0.3)] hover:border-[rgba(239,68,68,0.5)]" (click)="logout()">
           <i class="bi bi-box-arrow-right"></i>
           Logout
         </button>
       </div>
     } @else {
-      <div class="nav-links">
-        <a routerLink="/home" routerLinkActive="nav-link-active" class="nav-link">
+      <div class="flex items-center gap-2 flex-wrap">
+        <a routerLink="/home" 
+           routerLinkActive="!text-(--sms-primary) !bg-(--sms-accent)" 
+           class="inline-flex items-center gap-2 px-3 py-2 text-[0.875rem] font-medium text-[rgba(232,226,219,0.85)] no-underline rounded-lg transition-colors hover:text-(--sms-bg) hover:bg-[rgba(84,119,146,0.4)]">
           <i class="bi bi-house"></i>
           Home
         </a>
